@@ -91,10 +91,18 @@ VPCS>
 ```cisco
 router1#show arp
 Protocol  Address          Age (min)  Hardware Addr   Type   Interface
-Internet  10.4.2.11              16   0050.7966.6800  ARPA   FastEthernet1/0
+Internet  10.4.1.11               0   0800.27ef.6914  ARPA   FastEthernet0/0
+Internet  10.4.2.11              73   0050.7966.6800  ARPA   FastEthernet1/0
 Internet  10.4.1.254              -   cc01.0535.0000  ARPA   FastEthernet0/0
 Internet  10.4.2.254              -   cc01.0535.0010  ARPA   FastEthernet1/0
 router1#
+
+```
+
+```bash
+[root@admin1 ~]$ ip neigh show
+10.4.1.254 dev enp0s8 lladdr cc:01:05:35:00:00 STALE
+[root@admin1 ~]$
 ```
 
 ```cisco
@@ -104,3 +112,5 @@ cc:01:05:35:00:10  10.4.2.254 expires in 117 seconds
 
 VPCS>
 ```
+
+#### C. Routage
