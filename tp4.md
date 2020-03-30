@@ -285,3 +285,63 @@ GATEWAY=10.4.1.254
 ```
 > Vérification
 ```
+
+```cisco
+router1#ping 8.8.8.8
+
+Type escape sequence to abort.
+Sending 5, 100-byte ICMP Echos to 8.8.8.8, timeout is 2 seconds:
+!!!!!
+Success rate is 100 percent (5/5), round-trip min/avg/max = 64/73/100 ms
+router1#
+```
+
+```bash
+[arthur@admin1 ~]$ ping 8.8.8.8
+PING  8.8.8.8 ( 8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=1 ttl=51 time=39.1 ms
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=2 ttl=51 time=27.6 ms
+64 bytes from 8.8.8.8 (8.8.8.8): icmp_seq=3 ttl=51 time=38.7 ms
+^C
+---  8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 27.654/35.177/39.131/5.321 ms
+[arthur@admin1 ~]$
+```
+
+```cisco
+VPCS> ping 8.8.8.8
+84 bytes from 8.8.8.8 icmp_seq=1 ttl=51 time=29.688 ms
+84 bytes from 8.8.8.8 icmp_seq=2 ttl=51 time=26.029 ms
+^C
+VPCS>
+```
+
+```bash
+[arthur@admin1 ~]$ dig guest1.b1.tp4
+; <<>> DiG 9.11.4-P2-RedHat-9.11.4-9.P2.el7 <<>> guest1.b1.tp4
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 51161
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1452
+;; QUESTION SECTION:
+;guest1.b1.tp4.                    IN      A
+
+;; AUTHORITY SECTION:
+.                       9611       IN      SOA         a.root-server.net. nstld.verisign-grs.com. 2020033000 1800 900 604800 86400
+
+;; Query time: 33 msec
+;; SERVER: 1.1.1.1#53(1.1.1.1)
+;; WHEN: Mon Mar 30 18:22:30 CEST 2020
+;; MSG SIZE  rcvd: 117
+[arthur@admin1 ~]$
+```
+
+## IV. Topologie 4 : home-made DHCP
+
+### 2. Mise en place
+
+#### B. Setup de la VM
