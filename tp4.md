@@ -96,7 +96,6 @@ Internet  10.4.2.11              73   0050.7966.6800  ARPA   FastEthernet1/0
 Internet  10.4.1.254              -   cc01.0535.0000  ARPA   FastEthernet0/0
 Internet  10.4.2.254              -   cc01.0535.0010  ARPA   FastEthernet1/0
 router1#
-
 ```
 
 ```bash
@@ -114,3 +113,34 @@ VPCS>
 ```
 
 #### C. Routage
+
+```
+> admin1
+```
+
+```bash
+[arthur@admin1 ~]$ cat /etc/sysconfig/network-scripts/route-enp0s8
+10.4.2.0/24 via 10.4.1.254 dev enp0s8
+[arthur@admin1 ~]$
+```
+
+```
+> guest1
+```
+
+```
+> Vérification
+```
+
+```bash
+[arthur@admin1 ~]$ ping 10.4.2.11
+PING 10.4.2.11 (10.4.2.11) 56(84) bytes of data.
+64 bytes from 10.4.2.11 (10.4.2.11): icmp_seq=1 ttl=64 time=3013 ms
+64 bytes from 10.4.2.11 (10.4.2.11): icmp_seq=2 ttl=64 time=5011 ms
+64 bytes from 10.4.2.11 (10.4.2.11): icmp_seq=3 ttl=64 time=7012 ms
+^C
+--- 10.4.2.11 ping statistics ---
+3 packets transmitted, 3 received, 75% packet loss, time 11016ms
+rtt min/avg/max/mdev = 3013.440/5012.286/7012.419/1632.578 ms, pipe 8
+[arthur@client1 ~]$
+```
