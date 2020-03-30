@@ -217,3 +217,71 @@ traceroute to 10.4.2.11 (10.4.2.11), 30 hops max, 60 byte packets
 ```
 
 ## III. Topologie 3 : adding nodes and NAT
+
+#### B. VPCS
+
+```cisco
+VPCS> ip 10.4.2.12/24 10.4.2.254
+Checking for duplicate address...
+PC1 : 10.4.2.12 255.255.255.0 gateway 10.4.2.254
+
+VPCS> ping 10.4.1.11
+84 bytes from 10.4.1.11 icmp_seq=1 ttl=63 time=19.234 ms
+84 bytes from 10.4.1.11 icmp_seq=2 ttl=63 time=16.570 ms
+^C
+VPCS> save
+Saving startup configuration to startup.vpc
+.  done
+
+VPCS>
+```
+
+```cisco
+VPCS> ip 10.4.2.13/24 10.4.2.254
+Checking for duplicate address...
+PC1 : 10.4.2.13 255.255.255.0 gateway 10.4.2.254
+
+VPCS> ping 10.4.1.11
+84 bytes from 10.4.1.11 icmp_seq=1 ttl=63 time=13.535 ms
+84 bytes from 10.4.1.11 icmp_seq=2 ttl=63 time=13.505 ms
+84 bytes from 10.4.1.11 icmp_seq=3 ttl=63 time=19.439 ms
+^C
+VPCS>
+
+VPCS> save
+Saving startup configuration to startup.vpc
+.  done
+
+VPCS>
+```
+
+#### C. Accès WAN
+
+```
+> Donner un accès WAN au routeur
+```
+
+```cisco
+router1#show ip int br
+Interface                  IP-Address      OK? Method Status                Protocol
+FastEthernet0/0            10.4.1.254      YES NVRAM  up                    up
+FastEthernet1/0            10.4.2.254      YES NVRAM  up                    up
+FastEthernet2/0            192.168.122.61  YES DHCP   up                    up
+NVI0                       unassigned      NO  unset  up                    up
+router1#
+```
+
+```
+> Configurer les clients
+```
+
+```bash
+[arthur@admin1 ~]$ cat /etc/sysconfig/network
+# Created by anaconda
+GATEWAY=10.4.1.254
+[arthur@admin1 ~]$
+```
+
+```
+> Vérification
+```
