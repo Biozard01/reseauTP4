@@ -345,3 +345,11 @@ VPCS>
 ### 2. Mise en place
 
 #### B. Setup de la VM
+
+```bash
+[arthur@dhcp ~]$ sudo ss -lnu
+State   Recv-Q Send-Q   Local Adress:Port             Peer Adress:Port
+UNCONN  0      0                   *:67                         *:*
+```
+
+Les ports DHCP sont les ports 67 (serveur) et 68 (client). Nous voyons donc que le serveur est en écoute.
